@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kalkulator koordinat</title>
+    <style>
+        .garis-pinggir {
+            border-color: black;
+            border-width: 1;
+            border-style: solid;
+            width: 800px;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        .grid-display {
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
+
+        .container-tombol-hitung {
+            justify-content: center;
+            display: flex;
+            width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="garis-pinggir grid-display">
+        <div>
+            <h5>derajat</h5>
+            <input type="number" name="derajat" id="derajat" onchange="minmax('derajat',0,180)" >
+        </div>
+        <div>
+            <h5>menit</h5>
+            <input type="number" name="menit" id="menit" onchange="minmax('menit',0,60)">
+        </div>
+        <div>
+            <h5>detik</h5>
+            <input type="number" name="detik" id="detik" onchange="minmax('detik',0,60)">
+        </div>
+    </div>
+    <div class="garis-pinggir"> 
+<h5>decimal degree</h5>
+<input type="number" name="decimal-degree" id="decimal-degree">
+    </div>
+    <div class="container-tombol-hitung">
+        <button type="button" onclick="konversiDecimalDegree()">hitung</button>
+    </div>
+<script>
+function minmax(_id,_min,_max) {
+    var derajatinput = document.getElementById(_id).value
+    var derajatinput = parseFloat(derajatinput)
+
+    if (derajatinput >= _max){
+        console.log("nilai derajat lebih besar dari" + _max)
+        document.getElementById(_id).value = _max
+    }
+    else if (derajatinput <= _min){
+        console.log("nilai derajat lebih kecil dari" + _min)
+        document.getElementById(_id).value = _min
+    }
+}
+    
+    function konversiDecimalDegree(){
+    var derajat=document.getElementById("derajat").value
+    var menit=document.getElementById("menit").value
+    var detik=document.getElementById("detik").value
+    var decimalDegree =parseFloat(derajat) + parseFloat (menit/60)+ parseFloat (detik/3600)
+    console.log (decimalDegree)
+    document.getElementById("decimal-degree").value=decimalDegree
+    }
+</script>
+</body>
+
+</html>
